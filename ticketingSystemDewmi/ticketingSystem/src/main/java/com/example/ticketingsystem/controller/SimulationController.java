@@ -20,6 +20,7 @@ public class SimulationController {
         return simulateControl.saveConfiguration(simulationConfigDTO);
     }
 
+
     @PostMapping("/post")
     public SimulationConfigDTO startSimulation(@RequestBody SimulationConfigDTO simulationConfigDTO) {
 
