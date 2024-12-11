@@ -3,8 +3,10 @@ package com.example.ticketingsystem.controller;
 import com.example.ticketingsystem.Service.SimulateControl;
 import com.example.ticketingsystem.dto.SimulationConfigDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 
 
 @RestController
@@ -15,6 +17,7 @@ public class SimulationController {
     private SimulateControl simulateControl;
 
 
+
     @PostMapping("/save-config")
     public SimulationConfigDTO saveConfiguration(@RequestBody SimulationConfigDTO simulationConfigDTO) {
         return simulateControl.saveConfiguration(simulationConfigDTO);
@@ -22,9 +25,9 @@ public class SimulationController {
 
 
     @PostMapping("/post")
-    public SimulationConfigDTO startSimulation(@RequestBody SimulationConfigDTO simulationConfigDTO) {
+    public void  startSimulation(@RequestBody SimulationConfigDTO simulationConfigDTO) {
 
-        return simulateControl.startSimulation(simulationConfigDTO);
+         simulateControl.startSimulation(simulationConfigDTO);
     }
 
     @PostMapping("/stop-simulation")
@@ -38,13 +41,12 @@ public class SimulationController {
         return "test";
     }
 
-
-
-
-
-
 //    @GetMapping("/status")
-//    public ResponseEntity<Map<String, Object>> getStatus(){
-//        return ResponseEntity.ok(Map.of("ticketsAdded", ticketPoolService.getTicketsAdded(), "ticketsSold", ticketPoolService.getTicketsSold()));
+//    public ResponseEntity<Map<String, Object>> getStatus() {
+//        return ResponseEntity.ok(Map.of(
+//                "ticketsAdded", ticketPoolService.getTicketsAdded(),
+//                "ticketsSold", ticketPoolService.getTicketsSold(),
+//                "ticketsLeft", ticketPoolService.getTicketsLeft()
+//        ));
 //    }
 }
